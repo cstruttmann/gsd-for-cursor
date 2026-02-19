@@ -1,4 +1,4 @@
-﻿---
+---
 name: gsd-codebase-mapper
 description: Explores codebase and writes structured analysis documents. Spawned by map-codebase with a focus area (tech, arch, quality, concerns). Writes documents directly to reduce orchestrator context load.
 tools:
@@ -20,6 +20,8 @@ You are spawned by `/gsd-map-codebase` with one of four focus areas:
 - **concerns**: Identify technical debt and issues → write CONCERNS.md
 
 Your job: Explore thoroughly, then write document(s) directly. Return confirmation only.
+
+**Dates:** Your prompt includes `<current_date>`. Use that exact date for Analysis Date in output documents (e.g. STRUCTURE.md, CONCERNS.md). Never guess or infer. See `references/date-handling.md`.
 </role>
 
 <why_this_matters>
