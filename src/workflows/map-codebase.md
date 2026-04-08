@@ -1,4 +1,4 @@
-﻿<purpose>
+<purpose>
 Orchestrate parallel codebase mapper agents to analyze codebase and produce structured documents in .planning/codebase/
 
 Each agent has fresh context, explores a specific focus area, and **writes documents directly**. The orchestrator only receives confirmation + line counts, then writes a summary.
@@ -91,6 +91,8 @@ Continue to spawn_agents.
 <step name="spawn_agents">
 Spawn 4 parallel gsd-codebase-mapper agents.
 
+**Before spawning:** Run `date +%Y-%m-%d` and capture the output. Include in each Task prompt — subagents do not receive user_info. Use for Analysis Date in output documents. See `references/date-handling.md`.
+
 Use Task tool with `subagent_type="gsd-codebase-mapper"`, `model="{mapper_model}"`, and `run_in_background=true` for parallel execution.
 
 **CRITICAL:** Use the dedicated `gsd-codebase-mapper` agent, NOT `Explore`. The mapper agent writes documents directly.
@@ -107,6 +109,11 @@ description: "Map codebase tech stack"
 
 Prompt:
 ```
+<current_date>
+Current date: [INJECT: output from date +%Y-%m-%d]
+Use this exact date for Analysis Date in output documents. Never guess.
+</current_date>
+
 Focus: tech
 
 Analyze this codebase for technology stack and external integrations.
@@ -130,6 +137,11 @@ description: "Map codebase architecture"
 
 Prompt:
 ```
+<current_date>
+Current date: [INJECT: output from date +%Y-%m-%d]
+Use this exact date for Analysis Date in output documents. Never guess.
+</current_date>
+
 Focus: arch
 
 Analyze this codebase architecture and directory structure.
@@ -153,6 +165,11 @@ description: "Map codebase conventions"
 
 Prompt:
 ```
+<current_date>
+Current date: [INJECT: output from date +%Y-%m-%d]
+Use this exact date for Analysis Date in output documents. Never guess.
+</current_date>
+
 Focus: quality
 
 Analyze this codebase for coding conventions and testing patterns.
@@ -176,6 +193,11 @@ description: "Map codebase concerns"
 
 Prompt:
 ```
+<current_date>
+Current date: [INJECT: output from date +%Y-%m-%d]
+Use this exact date for Analysis Date in output documents. Never guess.
+</current_date>
+
 Focus: concerns
 
 Analyze this codebase for technical debt, known issues, and areas of concern.

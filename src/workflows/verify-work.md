@@ -1,4 +1,4 @@
-﻿<purpose>
+<purpose>
 Validate built features through conversational testing with persistent state. Creates UAT.md that tracks test progress, survives /clear, and feeds gaps into /gsd-plan-phase --gaps.
 
 User tests, Claude records. One test at a time. Plain text responses.
@@ -140,8 +140,8 @@ Create file:
 status: testing
 phase: XX-name
 source: [list of SUMMARY.md files]
-started: [ISO timestamp]
-updated: [ISO timestamp]
+started: [ISO timestamp - run: date -u +%Y-%m-%dT%H:%M:%SZ]
+updated: [ISO timestamp - run: date -u +%Y-%m-%dT%H:%M:%SZ]
 ---
 
 ## Current Test
@@ -264,7 +264,7 @@ Append to Gaps section (structured YAML for plan-phase --gaps):
 **After any response:**
 
 Update Summary counts.
-Update frontmatter.updated timestamp.
+Update frontmatter.updated timestamp: run `date -u +%Y-%m-%dT%H:%M:%SZ` and use that exact value. See `references/date-handling.md`.
 
 If more tests remain → Update Current Test, go to `present_test`
 If no more tests → Go to `complete_session`
@@ -295,7 +295,7 @@ Proceed to `present_test`.
 
 Update frontmatter:
 - status: complete
-- updated: [now]
+- updated: [run `date -u +%Y-%m-%dT%H:%M:%SZ` for exact ISO timestamp]
 
 Clear Current Test section:
 ```
