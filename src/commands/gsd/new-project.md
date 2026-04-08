@@ -1,4 +1,4 @@
-﻿---
+---
 name: gsd-new-project
 description: Initialize a new project with deep context gathering and PROJECT.md
 tools:
@@ -31,6 +31,7 @@ This is the most leveraged moment in any project. Deep questioning here means be
 
 @~/.cursor/get-shit-done/references/questioning.md
 @~/.cursor/get-shit-done/references/ui-brand.md
+@~/.cursor/get-shit-done/references/date-handling.md
 @~/.cursor/get-shit-done/templates/project.md
 @~/.cursor/get-shit-done/templates/requirements.md
 
@@ -147,6 +148,8 @@ Loop until "Create PROJECT.md" selected.
 
 ## Phase 4: Write PROJECT.md
 
+**Before writing:** Run `date +%Y-%m-%d` and capture the output. Use that exact value for the Last updated footer. See `references/date-handling.md`.
+
 Synthesize all context into `.planning/PROJECT.md` using the template from `templates/project.md`.
 
 **For greenfield projects:**
@@ -213,12 +216,7 @@ Initialize with any decisions made during questioning:
 | [Choice from questioning] | [Why] | — Pending |
 ```
 
-**Last updated footer:**
-
-```markdown
----
-*Last updated: [date] after initialization*
-```
+**Last updated footer:** Use the date from `date +%Y-%m-%d` (run before writing). Format: `*Last updated: YYYY-MM-DD after initialization*`
 
 Do not compress. Capture everything gathered.
 
@@ -421,6 +419,14 @@ Create research directory:
 mkdir -p .planning/research
 ```
 
+**Get current date for subagents:** Run `date +%Y-%m-%d` and capture the output. Include in each Task prompt:
+```
+<current_date>
+Current date: [output from date command]
+Use this exact date for any [date] placeholders in output files. Never guess.
+</current_date>
+```
+
 **Determine milestone context:**
 
 Check if this is greenfield or subsequent milestone:
@@ -440,6 +446,11 @@ Spawn 4 parallel gsd-project-researcher agents with rich context:
 
 ```
 Task(prompt="First, read ~/.cursor/agents/gsd-project-researcher.md for your role and instructions.
+
+<current_date>
+Current date: [INJECT: output from date +%Y-%m-%d — run before spawning]
+Use this exact date for any [date] placeholders in output. Never guess.
+</current_date>
 
 <research_type>
 Project Research — Stack dimension for [domain].
@@ -481,6 +492,11 @@ Use template: ~/.cursor/get-shit-done/templates/research-project/STACK.md
 
 Task(prompt="First, read ~/.cursor/agents/gsd-project-researcher.md for your role and instructions.
 
+<current_date>
+Current date: [INJECT: output from date +%Y-%m-%d]
+Use this exact date for any [date] placeholders in output. Never guess.
+</current_date>
+
 <research_type>
 Project Research — Features dimension for [domain].
 </research_type>
@@ -520,6 +536,11 @@ Use template: ~/.cursor/get-shit-done/templates/research-project/FEATURES.md
 ", subagent_type="general-purpose", model="{researcher_model}", description="Features research")
 
 Task(prompt="First, read ~/.cursor/agents/gsd-project-researcher.md for your role and instructions.
+
+<current_date>
+Current date: [INJECT: output from date +%Y-%m-%d]
+Use this exact date for any [date] placeholders in output. Never guess.
+</current_date>
 
 <research_type>
 Project Research — Architecture dimension for [domain].
@@ -561,6 +582,11 @@ Use template: ~/.cursor/get-shit-done/templates/research-project/ARCHITECTURE.md
 
 Task(prompt="First, read ~/.cursor/agents/gsd-project-researcher.md for your role and instructions.
 
+<current_date>
+Current date: [INJECT: output from date +%Y-%m-%d]
+Use this exact date for any [date] placeholders in output. Never guess.
+</current_date>
+
 <research_type>
 Project Research — Pitfalls dimension for [domain].
 </research_type>
@@ -600,10 +626,15 @@ Use template: ~/.cursor/get-shit-done/templates/research-project/PITFALLS.md
 ", subagent_type="general-purpose", model="{researcher_model}", description="Pitfalls research")
 ```
 
-After all 4 agents complete, spawn synthesizer to create SUMMARY.md:
+After all 4 agents complete, spawn synthesizer to create SUMMARY.md. Include current date (from `date +%Y-%m-%d`) in the prompt:
 
 ```
 Task(prompt="
+<current_date>
+Current date: [INJECT: output from date +%Y-%m-%d]
+Use this exact date for any [date] placeholders in SUMMARY.md. Never guess.
+</current_date>
+
 <task>
 Synthesize research outputs into SUMMARY.md.
 </task>
@@ -724,6 +755,8 @@ Use AskUserQuestion:
 
 Cross-check requirements against Core Value from PROJECT.md. If gaps detected, surface them.
 
+**Before generating REQUIREMENTS.md:** Run `date +%Y-%m-%d` and capture the output. Use for Defined and Last updated fields.
+
 **Generate REQUIREMENTS.md:**
 
 Create `.planning/REQUIREMENTS.md` with:
@@ -786,6 +819,8 @@ EOF
 
 ## Phase 8: Create Roadmap
 
+**Before spawning:** Run `date +%Y-%m-%d` and capture the output. Include in the roadmapper prompt (subagents do not receive user_info).
+
 Display stage banner:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -799,6 +834,11 @@ Spawn gsd-roadmapper agent with context:
 
 ```
 Task(prompt="
+<current_date>
+Current date: [INJECT: output from date +%Y-%m-%d]
+Use this exact date for STATE.md, REQUIREMENTS.md traceability, and any [date] placeholders. Never guess.
+</current_date>
+
 <planning_context>
 
 **Project:**

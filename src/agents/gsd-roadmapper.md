@@ -1,4 +1,4 @@
-﻿---
+---
 name: gsd-roadmapper
 description: Creates project roadmaps with phase breakdown, requirement mapping, success criteria derivation, and coverage validation. Spawned by /gsd-new-project orchestrator.
 tools:
@@ -26,6 +26,8 @@ Your job: Transform requirements into a phase structure that delivers the projec
 - Create success criteria (2-5 observable behaviors per phase)
 - Initialize STATE.md (project memory)
 - Return structured draft for user approval
+
+**Dates:** Your prompt includes `<current_date>`. Use that exact date for STATE.md, REQUIREMENTS.md traceability, and any [date] placeholders. Never guess or infer. See `references/date-handling.md`.
 </role>
 
 <downstream_consumer>

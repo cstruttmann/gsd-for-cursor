@@ -1,4 +1,4 @@
-﻿<purpose>
+<purpose>
 
 Mark a shipped version (v1.0, v1.1, v2.0) as complete. This creates a historical record in MILESTONES.md, performs full PROJECT.md evolution review, reorganizes ROADMAP.md with milestone groupings, and tags the release in git.
 
@@ -274,11 +274,11 @@ cat .planning/phases/*-*/*-SUMMARY.md
 
 **Update PROJECT.md:**
 
-Make all edits inline. Update "Last updated" footer:
+Make all edits inline. Update "Last updated" footer. **Before writing:** Run `date +%Y-%m-%d` and use that exact output. See `references/date-handling.md`.
 
 ```markdown
 ---
-*Last updated: [date] after v[X.Y] milestone*
+*Last updated: YYYY-MM-DD after v[X.Y] milestone*
 ```
 
 **Example full evolution (v1.0 → v1.1 prep):**

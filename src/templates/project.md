@@ -1,4 +1,4 @@
-﻿# PROJECT.md Template
+# PROJECT.md Template
 
 Template for `.planning/PROJECT.md` — the living project context document.
 
@@ -121,6 +121,7 @@ Common types: Tech stack, Timeline, Budget, Dependencies, Compatibility, Perform
 - Always note when and why the document was updated
 - Format: `after Phase 2` or `after v1.0 milestone`
 - Triggers review of whether content is still accurate
+- **Date:** Run `date +%Y-%m-%d` before writing. Use that exact output — never guess. See `references/date-handling.md`
 
 </guidelines>
 

@@ -1,4 +1,4 @@
-﻿<required_reading>
+<required_reading>
 
 **read these files NOW:**
 
@@ -195,11 +195,11 @@ cat .planning/phases/XX-current/*-SUMMARY.md
 
 **Update PROJECT.md:**
 
-Make the edits inline. Update "Last updated" footer:
+Make the edits inline. Update "Last updated" footer. **Before writing:** Run `date +%Y-%m-%d` and use that exact output. See `references/date-handling.md`.
 
 ```markdown
 ---
-*Last updated: [date] after Phase [X]*
+*Last updated: YYYY-MM-DD after Phase [X]*
 ```
 
 **Example evolution:**

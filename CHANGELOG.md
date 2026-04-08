@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **Date handling**: Documents now use system date via `date` command instead of AI-inferred dates. Fixes incorrect dates in PROJECT.md, REQUIREMENTS.md, CONTEXT.md, codebase maps, and UAT timestamps. ([#XX](link))
+
 ## [1.0.0] - 2026-01-25
 
 ### Added
