@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
-
+- **Hooks**: Corrected path references from `~/.claude/` to `~/.cursor/` in `gsd-check-update.js` and `gsd-statusline.js`. The hooks were still pointing to Claude Code's config directory, causing cache and VERSION file lookups to fail on Cursor.
 - **Date handling**: Documents now use system date via `date` command instead of AI-inferred dates. Fixes incorrect dates in PROJECT.md, REQUIREMENTS.md, CONTEXT.md, codebase maps, and UAT timestamps. ([#XX](link))
 
 ## [1.0.0] - 2026-01-25
